@@ -65,6 +65,7 @@ fetch(`http://localhost:3000/automjetet/${automjetiId}`)
       const newReservation = {
         automjetiId: automjetiId,
         clientId: clinetId,
+        username: username,
         dataMarrjes: dataeFillimit,
         dataKthimit: dataeMbarimit,
         shenime: shenime,

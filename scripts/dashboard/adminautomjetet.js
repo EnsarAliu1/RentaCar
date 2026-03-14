@@ -76,6 +76,7 @@ autoForm.addEventListener("submit", (event) => {
     };
 
     reader.readAsDataURL(autoImg);
+    location.reload();
   }
 });
 /*********************************************/

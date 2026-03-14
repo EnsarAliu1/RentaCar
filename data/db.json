@@ -23,11 +23,11 @@
     {
       "id": "3",
       "emri": "BMW M5",
-      "viti": 2024,
+      "viti": "2024",
       "karburanti": "Nafte",
       "transmisioni": "Automatik",
-      "kapaciteti": 5,
-      "cmimi": 120,
+      "kapaciteti": "5",
+      "cmimi": "110",
       "img": "../images/bmw-m5.jpg"
     },
     {
@@ -83,11 +83,11 @@
     {
       "id": "9",
       "emri": "Fiat 500",
-      "viti": 2023,
-      "karburanti": "Naftr",
+      "viti": "2023",
+      "karburanti": "Nafte",
       "transmisioni": "Automatik",
-      "kapaciteti": 5,
-      "cmimi": 65,
+      "kapaciteti": "5",
+      "cmimi": "60",
       "img": "../images/fiat.jpg"
     },
     {
@@ -127,7 +127,7 @@
       "emri": "Ensar",
       "mbiemri": "Aliu",
       "email": "ensaraliu@gmail.com",
-      "telefoni": "+38343577605",
+      "telefoni": "+38349577605",
       "password": "ensar123",
       "username": "ensaraliu"
     },
@@ -247,6 +247,15 @@
       "telefoni": "+38349345678",
       "password": "egzon123",
       "username": "Egzonuka"
+    },
+    {
+      "id": "2d84",
+      "emri": "Albin ",
+      "mbiemri": "Sekiraqa",
+      "email": "albin@gmail.com",
+      "telefoni": "+3835156253",
+      "password": "albin123",
+      "username": "Albin sekiraqa"
     }
   ],
   "rezervimet": [
@@ -294,6 +303,23 @@
       "dataMarrjes": "2026-03-03",
       "dataKthimit": "2026-03-12",
       "shenime": "ka mundesi zgjatje"
+    },
+    {
+      "id": "57ec",
+      "automjetiId": "5",
+      "clientId": "1",
+      "dataMarrjes": "2026-03-15",
+      "dataKthimit": "2026-03-19",
+      "shenime": "test test"
+    },
+    {
+      "id": "e9f6",
+      "automjetiId": "5",
+      "clientId": "1",
+      "username": "ensaraliu",
+      "dataMarrjes": "2026-03-15",
+      "dataKthimit": "2026-03-24",
+      "shenime": "test test"
     }
   ],
   "admins": [
