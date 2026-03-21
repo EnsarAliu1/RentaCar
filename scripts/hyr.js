@@ -1,5 +1,23 @@
 const form = document.getElementById("hyrForm");
 
+function showToast(message, type) {
+  const toastElement = document.getElementById("loginToast");
+  const toastText = document.getElementById("toastText");
+
+  toastText.textContent = message;
+
+  toastElement.classList.remove("text-bg-success", "text-bg-danger");
+
+  if (type === "success") {
+    toastElement.classList.add("text-bg-success");
+  } else if (type === "error") {
+    toastElement.classList.add("text-bg-danger");
+  }
+
+  const toast = new bootstrap.Toast(toastElement);
+  toast.show();
+}
+
 const onClientLogin = (event) => {
   event.preventDefault();
 
@@ -7,7 +25,7 @@ const onClientLogin = (event) => {
   const password = document.getElementById("password").value;
 
   if (email === "" || password === "") {
-    alert("Ju lutem plotesoni email dhe fjalekalimin!");
+    showToast("Ju lutem plotesoni email dhe fjalekalimin!", "error");
     return;
   }
 
@@ -19,15 +37,23 @@ const onClientLogin = (event) => {
       );
 
       if (!client) {
-        alert("Emaili ose fjalekalimi eshte i gabuar!");
+        showToast("Emaili ose fjalekalimi eshte i gabuar!", "error");
         return;
       }
 
       localStorage.setItem("username", client.username);
       localStorage.setItem("clientId", client.id);
 
-      alert("Hyrja u krye me sukses!");
-      window.location.href = "../views/index.html";
+      const toastElement = document.getElementById("loginToast");
+      const toast = new bootstrap.Toast(toastElement);
+      let toastText = document.getElementById("toastText");
+      toastText.textContent = "Hyrja u krye me sukses";
+
+      showToast("Hyrja u krye me sukses!", "success");
+
+      setTimeout(() => {
+        window.location.href = "../views/index.html";
+      }, 1500);
     });
 };
 
