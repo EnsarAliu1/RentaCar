@@ -26,5 +26,5 @@ document.addEventListener("DOMContentLoaded", () => {
 function logout() {
   localStorage.removeItem("adminUsername");
   localStorage.removeItem("adminId");
-  window.location.href = "../../views/index.html";
+  window.location.href = "../../index.html";
 }

@@ -62,7 +62,7 @@ const onClientLogin = (event) => {
       showToast("Hyrja u krye me sukses!", "success");
 
       setTimeout(() => {
-        window.location.href = "../views/index.html";
+        window.location.href = "../index.html";
       }, 1500);
     });
 };
