@@ -1,6 +1,34 @@
 const parametrat = new URLSearchParams(window.location.search);
 const automjetiId = parametrat.get("automjetiId");
 
+function showToast(message, type) {
+  const toastElement = document.getElementById("pageToast");
+  const toastText = document.getElementById("toastText");
+
+  toastText.textContent = message;
+
+  toastElement.classList.remove("text-bg-success", "text-bg-danger");
+
+  if (type === "success") {
+    toastElement.classList.add("text-bg-success");
+  } else if (type === "error") {
+    toastElement.classList.add("text-bg-danger");
+  }
+
+  const toast = new bootstrap.Toast(toastElement);
+  toast.show();
+}
+
+// Kontrollo nese ka toast te ruajtur ne sessionStorage (pas reload)
+window.addEventListener("DOMContentLoaded", () => {
+  const pendingToast = sessionStorage.getItem("pendingToast");
+  if (pendingToast) {
+    const { message, type } = JSON.parse(pendingToast);
+    sessionStorage.removeItem("pendingToast");
+    showToast(message, type);
+  }
+});
+
 fetch(`http://localhost:3000/automjetet/${automjetiId}`)
   .then((response) => response.json())
   .then((automjeti) => {
@@ -55,10 +83,10 @@ fetch(`http://localhost:3000/automjetet/${automjetiId}`)
       const clinetId = localStorage.getItem("clientId");
 
       if (dataeFillimit === "" || dataeMbarimit === "") {
-        alert("Ju lutem zgjedhni datat per fillim dhe mbarim te rezervimit! ");
+        showToast("Ju lutem zgjedhni datat per fillim dhe mbarim te rezervimit! ", "error");
         return;
       } else if (username === null) {
-        alert("Duhet te beheni login per te rezervuar");
+        showToast("Duhet te beheni login per te rezervuar", "error");
         return;
       }
 
@@ -71,7 +99,12 @@ fetch(`http://localhost:3000/automjetet/${automjetiId}`)
         shenime: shenime,
       };
 
-      const respose = fetch("http://localhost:3000/rezervimet", {
+      sessionStorage.setItem("pendingToast", JSON.stringify({
+        message: "Rezervimi u be me sukses!",
+        type: "success"
+      }));
+
+      fetch("http://localhost:3000/rezervimet", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,7 +114,6 @@ fetch(`http://localhost:3000/automjetet/${automjetiId}`)
         .then((response) => response.json())
         .then(() => {
           rezervimiForm.reset();
-          alert("Rezervimi u be me sukses!");
         });
     };
 

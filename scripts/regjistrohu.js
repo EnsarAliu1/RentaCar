@@ -7,6 +7,34 @@ const clients = "http://localhost:3000/clients";
 
 const form = document.getElementById("regjistrimForm");
 
+function showToast(message, type) {
+  const toastElement = document.getElementById("pageToast");
+  const toastText = document.getElementById("toastText");
+
+  toastText.textContent = message;
+
+  toastElement.classList.remove("text-bg-success", "text-bg-danger");
+
+  if (type === "success") {
+    toastElement.classList.add("text-bg-success");
+  } else if (type === "error") {
+    toastElement.classList.add("text-bg-danger");
+  }
+
+  const toast = new bootstrap.Toast(toastElement);
+  toast.show();
+}
+
+// Kontrollo nese ka toast te ruajtur ne sessionStorage (pas reload)
+window.addEventListener("DOMContentLoaded", () => {
+  const pendingToast = sessionStorage.getItem("pendingToast");
+  if (pendingToast) {
+    const { message, type } = JSON.parse(pendingToast);
+    sessionStorage.removeItem("pendingToast");
+    showToast(message, type);
+  }
+});
+
 const onClientCreate = (event) => {
   event.preventDefault();
   const emri = document.getElementById("emri").value;
@@ -24,33 +52,34 @@ const onClientCreate = (event) => {
     password === "" ||
     konfirmo === ""
   ) {
-    alert("Ju lutem plotesoni te gjitha fushat!");
+    showToast("Ju lutem plotesoni te gjitha fushat!", "error");
     return;
   }
 
   if (password.length < 8) {
-    alert("Fjalekalimi duhet te kete te pakten 8 karaktere!");
+    showToast("Fjalekalimi duhet te kete te pakten 8 karaktere!", "error");
     return;
   }
 
   if (password !== konfirmo) {
-    alert("Fjalekalimi dhe konfirmi duhet te jene te njejta!");
+    showToast("Fjalekalimi dhe konfirmi duhet te jene te njejta!", "error");
     return;
   }
 
   if (!email.includes("@")) {
-    alert("Emaili duhet te jete ne formatin e duhur!");
+    showToast("Emaili duhet te jete ne formatin e duhur!", "error");
     return;
   }
 
   if (email === clients.email) {
-    alert("Ky email eshte i perdorur, ju lutem zgjidhni nje email tjeter!");
+    showToast("Ky email eshte i perdorur, ju lutem zgjidhni nje email tjeter!", "error");
     return;
   }
 
   if (telefoni === clients.telefoni) {
-    alert(
+    showToast(
       "Ky numer telefoni eshte i perdorur, ju lutem zgjidhni nje numer tjeter!",
+      "error",
     );
     return;
   }
@@ -64,7 +93,14 @@ const onClientCreate = (event) => {
     username: emri + mbiemri.toLowerCase(),
   };
 
-  const response = fetch("http://localhost:3000/clients", {
+  // Ruaj toast mesazhin para se te bejme POST (sepse Live Server bon reload kur ndryshon db.json)
+  sessionStorage.setItem("pendingToast", JSON.stringify({
+    message: "Llogaria u krijua me sukses!",
+    type: "success",
+    redirect: "./hyr.html"
+  }));
+
+  fetch("http://localhost:3000/clients", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -74,9 +110,8 @@ const onClientCreate = (event) => {
     .then((response) => response.json())
     .then((data) => {
       form.reset();
+      window.location.href = "./hyr.html";
     });
-  window.location.href = "../views/hyr.html";
-  alert("Llogaria u krijua me sukses!");
 };
 
 form.addEventListener("submit", onClientCreate);

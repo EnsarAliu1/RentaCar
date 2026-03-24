@@ -1,5 +1,33 @@
 let rezervimetTABELA = "";
 
+function showToast(message, type) {
+  const toastElement = document.getElementById("pageToast");
+  const toastText = document.getElementById("toastText");
+
+  toastText.textContent = message;
+
+  toastElement.classList.remove("text-bg-success", "text-bg-danger");
+
+  if (type === "success") {
+    toastElement.classList.add("text-bg-success");
+  } else if (type === "error") {
+    toastElement.classList.add("text-bg-danger");
+  }
+
+  const toast = new bootstrap.Toast(toastElement);
+  toast.show();
+}
+
+// Kontrollo nese ka toast te ruajtur ne sessionStorage (pas reload)
+window.addEventListener("DOMContentLoaded", () => {
+  const pendingToast = sessionStorage.getItem("pendingToast");
+  if (pendingToast) {
+    const { message, type } = JSON.parse(pendingToast);
+    sessionStorage.removeItem("pendingToast");
+    showToast(message, type);
+  }
+});
+
 fetch("http://localhost:3000/rezervimet")
   .then((response) => response.json())
   .then((rezervimet) => {
@@ -49,6 +77,11 @@ rezervimiForm.addEventListener("submit", (event) => {
     shenime: shenime,
   };
 
+  sessionStorage.setItem("pendingToast", JSON.stringify({
+    message: "Rezervimi u be me sukses!",
+    type: "success"
+  }));
+
   fetch("http://localhost:3000/rezervimet", {
     method: "POST",
     headers: {
@@ -58,12 +91,12 @@ rezervimiForm.addEventListener("submit", (event) => {
   })
     .then((response) => response.json())
     .then(() => {
-      alert("Rezervimi u be me sukses!");
       rezervimiForm.reset();
 
       const modalEl = document.getElementById("shtoRezervim");
       const modal = bootstrap.Modal.getInstance(modalEl);
       if (modal) modal.hide();
+      window.location.reload();
     });
 });
 /*************************************************/
@@ -163,11 +196,15 @@ document.addEventListener("click", function (e) {
     const konfirm = confirm("A je i sigurt qe don me fshi kete rezervim?");
     if (!konfirm) return;
 
+    sessionStorage.setItem("pendingToast", JSON.stringify({
+      message: "Rezervimi o fshi!",
+      type: "success"
+    }));
+
     fetch(`http://localhost:3000/rezervimet/${id}`, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
-        alert("Rezervimi o fshi!");
         row.remove();
       }
     });

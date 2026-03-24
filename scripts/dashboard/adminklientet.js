@@ -1,5 +1,33 @@
 let klinetetTABELA = "";
 
+function showToast(message, type) {
+  const toastElement = document.getElementById("pageToast");
+  const toastText = document.getElementById("toastText");
+
+  toastText.textContent = message;
+
+  toastElement.classList.remove("text-bg-success", "text-bg-danger");
+
+  if (type === "success") {
+    toastElement.classList.add("text-bg-success");
+  } else if (type === "error") {
+    toastElement.classList.add("text-bg-danger");
+  }
+
+  const toast = new bootstrap.Toast(toastElement);
+  toast.show();
+}
+
+// Kontrollo nese ka toast te ruajtur ne sessionStorage (pas reload)
+window.addEventListener("DOMContentLoaded", () => {
+  const pendingToast = sessionStorage.getItem("pendingToast");
+  if (pendingToast) {
+    const { message, type } = JSON.parse(pendingToast);
+    sessionStorage.removeItem("pendingToast");
+    showToast(message, type);
+  }
+});
+
 fetch("http://localhost:3000/clients")
   .then((response) => response.json())
   .then((clients) => {
@@ -118,14 +146,18 @@ document.addEventListener("click", function (e) {
     const konfirm = confirm("A je i sigurte qe do me fshi kete klient?");
     if (!konfirm) return;
 
+    sessionStorage.setItem("pendingToast", JSON.stringify({
+      message: "Klienti u fshi!",
+      type: "success"
+    }));
+
     fetch(`http://localhost:3000/clients/${id}`, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
-        alert("Klienti u fshi!");
         row.remove();
       } else {
-        alert("Gabim! Nuk mund te fshihet klienti");
+        showToast("Gabim! Nuk mund te fshihet klienti", "error");
       }
     });
   }

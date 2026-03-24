@@ -1,5 +1,15 @@
 const form = document.getElementById("hyrForm");
 
+// Kontrollo nese ka toast te ruajtur ne sessionStorage (nga regjistrohu)
+window.addEventListener("DOMContentLoaded", () => {
+  const pendingToast = sessionStorage.getItem("pendingToast");
+  if (pendingToast) {
+    const { message, type } = JSON.parse(pendingToast);
+    sessionStorage.removeItem("pendingToast");
+    showToast(message, type);
+  }
+});
+
 function showToast(message, type) {
   const toastElement = document.getElementById("loginToast");
   const toastText = document.getElementById("toastText");

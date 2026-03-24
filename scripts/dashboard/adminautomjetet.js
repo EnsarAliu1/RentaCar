@@ -1,5 +1,33 @@
 let automjetetTABELA = "";
 
+function showToast(message, type) {
+  const toastElement = document.getElementById("pageToast");
+  const toastText = document.getElementById("toastText");
+
+  toastText.textContent = message;
+
+  toastElement.classList.remove("text-bg-success", "text-bg-danger");
+
+  if (type === "success") {
+    toastElement.classList.add("text-bg-success");
+  } else if (type === "error") {
+    toastElement.classList.add("text-bg-danger");
+  }
+
+  const toast = new bootstrap.Toast(toastElement);
+  toast.show();
+}
+
+// Kontrollo nese ka toast te ruajtur ne sessionStorage (pas reload)
+window.addEventListener("DOMContentLoaded", () => {
+  const pendingToast = sessionStorage.getItem("pendingToast");
+  if (pendingToast) {
+    const { message, type } = JSON.parse(pendingToast);
+    sessionStorage.removeItem("pendingToast");
+    showToast(message, type);
+  }
+});
+
 fetch("http://localhost:3000/automjetet")
   .then((response) => response.json())
   .then((automjetet) => {
@@ -57,6 +85,11 @@ autoForm.addEventListener("submit", (event) => {
         img: imgBase64,
       };
 
+      sessionStorage.setItem("pendingToast", JSON.stringify({
+        message: "Automjeti u shtua me sukses!",
+        type: "success"
+      }));
+
       fetch("http://localhost:3000/automjetet", {
         method: "POST",
         headers: {
@@ -66,17 +99,16 @@ autoForm.addEventListener("submit", (event) => {
       })
         .then((response) => response.json())
         .then(() => {
-          alert("Automjeti u shtua me sukses!");
           autoForm.reset();
 
           const modalEl = document.getElementById("shtoAutomjet");
           const modal = bootstrap.Modal.getInstance(modalEl);
           if (modal) modal.hide();
+          window.location.reload();
         });
     };
 
     reader.readAsDataURL(autoImg);
-    location.reload();
   }
 });
 /*********************************************/
@@ -177,21 +209,25 @@ document.addEventListener("click", function (e) {
     const konfirm = confirm("A je i sigurt qe don me fshi kete automjet?");
     if (!konfirm) return;
 
+    sessionStorage.setItem("pendingToast", JSON.stringify({
+      message: "Automjeti u fshi!",
+      type: "success"
+    }));
+
     fetch(`http://localhost:3000/automjetet/${id}`, {
       method: "DELETE",
     })
       .then((res) => {
         if (res.ok) {
-          alert("Automjeti u fshi!");
           row.remove();
         } else {
-          alert("Gabim! Nuk mund te fshihet automjeti.");
+          showToast("Gabim! Nuk mund te fshihet automjeti.", "error");
           console.error("DELETE error:", res.status);
         }
       })
       .catch((err) => {
         console.error("Gabim gjatë fetch:", err);
-        alert("Diçka shkoi gabim gjatë fshirjes.");
+        showToast("Diçka shkoi gabim gjatë fshirjes.", "error");
       });
   }
 });
