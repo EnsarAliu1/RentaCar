@@ -18,7 +18,6 @@ function showToast(message, type) {
   toast.show();
 }
 
-// Kontrollo nese ka toast te ruajtur ne sessionStorage (pas reload)
 window.addEventListener("DOMContentLoaded", () => {
   const pendingToast = sessionStorage.getItem("pendingToast");
   if (pendingToast) {
@@ -85,10 +84,13 @@ autoForm.addEventListener("submit", (event) => {
         img: imgBase64,
       };
 
-      sessionStorage.setItem("pendingToast", JSON.stringify({
-        message: "Automjeti u shtua me sukses!",
-        type: "success"
-      }));
+      sessionStorage.setItem(
+        "pendingToast",
+        JSON.stringify({
+          message: "Automjeti u shtua me sukses!",
+          type: "success",
+        }),
+      );
 
       fetch("http://localhost:3000/automjetet", {
         method: "POST",
@@ -209,10 +211,13 @@ document.addEventListener("click", function (e) {
     const konfirm = confirm("A je i sigurt qe don me fshi kete automjet?");
     if (!konfirm) return;
 
-    sessionStorage.setItem("pendingToast", JSON.stringify({
-      message: "Automjeti u fshi!",
-      type: "success"
-    }));
+    sessionStorage.setItem(
+      "pendingToast",
+      JSON.stringify({
+        message: "Automjeti u fshi!",
+        type: "success",
+      }),
+    );
 
     fetch(`http://localhost:3000/automjetet/${id}`, {
       method: "DELETE",

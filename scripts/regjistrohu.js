@@ -25,7 +25,6 @@ function showToast(message, type) {
   toast.show();
 }
 
-// Kontrollo nese ka toast te ruajtur ne sessionStorage (pas reload)
 window.addEventListener("DOMContentLoaded", () => {
   const pendingToast = sessionStorage.getItem("pendingToast");
   if (pendingToast) {
@@ -72,7 +71,10 @@ const onClientCreate = (event) => {
   }
 
   if (email === clients.email) {
-    showToast("Ky email eshte i perdorur, ju lutem zgjidhni nje email tjeter!", "error");
+    showToast(
+      "Ky email eshte i perdorur, ju lutem zgjidhni nje email tjeter!",
+      "error",
+    );
     return;
   }
 
@@ -94,11 +96,14 @@ const onClientCreate = (event) => {
   };
 
   // Ruaj toast mesazhin para se te bejme POST (sepse Live Server bon reload kur ndryshon db.json)
-  sessionStorage.setItem("pendingToast", JSON.stringify({
-    message: "Llogaria u krijua me sukses!",
-    type: "success",
-    redirect: "./hyr.html"
-  }));
+  sessionStorage.setItem(
+    "pendingToast",
+    JSON.stringify({
+      message: "Llogaria u krijua me sukses!",
+      type: "success",
+      redirect: "./hyr.html",
+    }),
+  );
 
   fetch("http://localhost:3000/clients", {
     method: "POST",

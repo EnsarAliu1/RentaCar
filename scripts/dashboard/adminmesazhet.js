@@ -18,7 +18,6 @@ function showToast(message, type) {
   toast.show();
 }
 
-// Kontrollo nese ka toast te ruajtur ne sessionStorage (pas reload)
 window.addEventListener("DOMContentLoaded", () => {
   const pendingToast = sessionStorage.getItem("pendingToast");
   if (pendingToast) {
@@ -60,10 +59,13 @@ document.addEventListener("click", function (e) {
     const konfirm = confirm("A je i sigurt qe don me fshi kete mesazh?");
     if (!konfirm) return;
 
-    sessionStorage.setItem("pendingToast", JSON.stringify({
-      message: "Mesazhi u fshi",
-      type: "success"
-    }));
+    sessionStorage.setItem(
+      "pendingToast",
+      JSON.stringify({
+        message: "Mesazhi u fshi",
+        type: "success",
+      }),
+    );
 
     fetch(`http://localhost:3000/mesazhet/${id}`, {
       method: "DELETE",

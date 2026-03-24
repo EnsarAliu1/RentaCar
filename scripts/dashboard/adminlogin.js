@@ -18,7 +18,6 @@ function showToast(message, type) {
   toast.show();
 }
 
-// Kontrollo nese ka toast te ruajtur ne sessionStorage (pas reload)
 window.addEventListener("DOMContentLoaded", () => {
   const pendingToast = sessionStorage.getItem("pendingToast");
   if (pendingToast) {

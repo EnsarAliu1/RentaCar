@@ -18,7 +18,6 @@ function showToast(message, type) {
   toast.show();
 }
 
-// Kontrollo nese ka toast te ruajtur ne sessionStorage (pas reload)
 window.addEventListener("DOMContentLoaded", () => {
   const pendingToast = sessionStorage.getItem("pendingToast");
   if (pendingToast) {
@@ -77,10 +76,13 @@ rezervimiForm.addEventListener("submit", (event) => {
     shenime: shenime,
   };
 
-  sessionStorage.setItem("pendingToast", JSON.stringify({
-    message: "Rezervimi u be me sukses!",
-    type: "success"
-  }));
+  sessionStorage.setItem(
+    "pendingToast",
+    JSON.stringify({
+      message: "Rezervimi u be me sukses!",
+      type: "success",
+    }),
+  );
 
   fetch("http://localhost:3000/rezervimet", {
     method: "POST",
@@ -196,10 +198,13 @@ document.addEventListener("click", function (e) {
     const konfirm = confirm("A je i sigurt qe don me fshi kete rezervim?");
     if (!konfirm) return;
 
-    sessionStorage.setItem("pendingToast", JSON.stringify({
-      message: "Rezervimi o fshi!",
-      type: "success"
-    }));
+    sessionStorage.setItem(
+      "pendingToast",
+      JSON.stringify({
+        message: "Rezervimi o fshi!",
+        type: "success",
+      }),
+    );
 
     fetch(`http://localhost:3000/rezervimet/${id}`, {
       method: "DELETE",

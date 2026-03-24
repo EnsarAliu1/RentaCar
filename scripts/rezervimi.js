@@ -19,7 +19,6 @@ function showToast(message, type) {
   toast.show();
 }
 
-// Kontrollo nese ka toast te ruajtur ne sessionStorage (pas reload)
 window.addEventListener("DOMContentLoaded", () => {
   const pendingToast = sessionStorage.getItem("pendingToast");
   if (pendingToast) {
@@ -83,7 +82,10 @@ fetch(`http://localhost:3000/automjetet/${automjetiId}`)
       const clinetId = localStorage.getItem("clientId");
 
       if (dataeFillimit === "" || dataeMbarimit === "") {
-        showToast("Ju lutem zgjedhni datat per fillim dhe mbarim te rezervimit! ", "error");
+        showToast(
+          "Ju lutem zgjedhni datat per fillim dhe mbarim te rezervimit! ",
+          "error",
+        );
         return;
       } else if (username === null) {
         showToast("Duhet te beheni login per te rezervuar", "error");
@@ -99,10 +101,13 @@ fetch(`http://localhost:3000/automjetet/${automjetiId}`)
         shenime: shenime,
       };
 
-      sessionStorage.setItem("pendingToast", JSON.stringify({
-        message: "Rezervimi u be me sukses!",
-        type: "success"
-      }));
+      sessionStorage.setItem(
+        "pendingToast",
+        JSON.stringify({
+          message: "Rezervimi u be me sukses!",
+          type: "success",
+        }),
+      );
 
       fetch("http://localhost:3000/rezervimet", {
         method: "POST",
