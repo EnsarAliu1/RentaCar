@@ -37,9 +37,6 @@ fetch("http://localhost:3000/automjetet")
                         <hr>
                         <div class="row">
                             <div class="col">
-                                <button class="border rounded-3 py-2 px-5">Detajet</button>
-                            </div>
-                            <div class="col">
                                 <button class="btn bg-primary text-dark fw-bold rounded-3 py-2 px-2"
                                     onclick="rezervimi(${automjeti.id})"><i
                                         class="bi bi-calendar"></i>Rezervo tani</button>

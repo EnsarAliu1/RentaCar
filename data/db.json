@@ -355,6 +355,69 @@
       "telefoni": "+38344123463",
       "password": "kreshnik123",
       "username": "kreshnikhalimi"
+    },
+    {
+      "id": "d6a5",
+      "emri": "Ardit ",
+      "mbiemri": "Hoxha",
+      "email": "ardit.hoxha@gmail.com",
+      "telefoni": "+38345999999",
+      "password": "ardit1234",
+      "username": "Ardit hoxha"
+    },
+    {
+      "id": "f712",
+      "emri": "Sara",
+      "mbiemri": "Gashi",
+      "email": "sara.gashi@gmail.com",
+      "telefoni": "+38349888888",
+      "password": "sara12345",
+      "username": "saragashi"
+    },
+    {
+      "id": "199b",
+      "emri": "Elira",
+      "mbiemri": "Berisha",
+      "email": "elira.berisha@gmail.com",
+      "telefoni": "+38345777777",
+      "password": "elira123",
+      "username": "eliraberisha"
+    },
+    {
+      "id": "9a0d",
+      "emri": "Besim",
+      "mbiemri": "Ademi",
+      "email": "besimademi@gmail.com",
+      "telefoni": "+38345567345",
+      "password": "besimi123",
+      "username": "besimademi"
+    },
+    {
+      "id": "798d",
+      "emri": "Altin",
+      "mbiemri": "Bunjaku",
+      "email": "altinbunjaku@gmail.com",
+      "telefoni": "+38349666666",
+      "password": "altini1234",
+      "username": "altinbunjaku"
+    },
+    {
+      "id": "53f9",
+      "emri": "Edon ",
+      "mbiemri": "Shaqiri",
+      "email": "edonshaqiri@gmail.com",
+      "telefoni": "+38345111111",
+      "password": "edoni1234",
+      "username": "edon shaqiri"
+    },
+    {
+      "id": "bf5f",
+      "emri": "Elion",
+      "mbiemri": "Ismajli",
+      "email": "elionismajli@gmail.com",
+      "telefoni": "+38345222222",
+      "password": "elioni1234",
+      "username": "elionismajli"
     }
   ],
   "rezervimet": [
@@ -436,6 +499,94 @@
       "telefoni": "+383123789",
       "subjekti": "Kerkoj veture elektrike",
       "Mesazhi": "Pershendetje shpresoj qe jeni mire, me falni per pengesen por desha te pyes se a ka ndonje veture elektrike per te marre me qera"
+    },
+    {
+      "id": "b478",
+      "emriPlote": "Ensar Aliu",
+      "email": "ensaraliu@gmail.com",
+      "telefoni": "+38345123456",
+      "subjekti": "Kam probleme me makinen",
+      "Mesazhi": "test test test"
+    },
+    {
+      "id": "875f",
+      "emriPlote": "Filan Fisteku",
+      "email": "ensaraliu2017@gmail.com",
+      "telefoni": "+38345123789",
+      "subjekti": "Kam probleme me makinen",
+      "Mesazhi": "test test"
+    },
+    {
+      "id": "9b94",
+      "emriPlote": "Filan Fisteku",
+      "email": "ensaraliu2017@gmail.com",
+      "telefoni": "+38345123789",
+      "subjekti": "Kam probleme me makinen",
+      "Mesazhi": "test 123"
+    },
+    {
+      "id": "f9b4",
+      "emriPlote": "Filan Fisteku",
+      "email": "ensaraliu2017@gmail.com",
+      "telefoni": "+38345123789",
+      "subjekti": "Kam probleme me makinen",
+      "Mesazhi": "test 2424"
+    },
+    {
+      "id": "0299",
+      "emriPlote": "Filan Fisteku",
+      "email": "ensaraliu2017@gmail.com",
+      "telefoni": "+38345123789",
+      "subjekti": "Kam probleme me makinen",
+      "Mesazhi": "test6676"
+    },
+    {
+      "id": "083a",
+      "emriPlote": "Filan Fisteku",
+      "email": "ensaraliu2017@gmail.com",
+      "telefoni": "+38345123456",
+      "subjekti": "Kam probleme me makinen",
+      "Mesazhi": "test test45652"
+    },
+    {
+      "id": "122c",
+      "emriPlote": "Filan Fisteku",
+      "email": "ensaraliu2017@gmail.com",
+      "telefoni": "+38345123789",
+      "subjekti": "Kam probleme me makinen",
+      "Mesazhi": "test test 7667877"
+    },
+    {
+      "id": "30d2",
+      "emriPlote": "Filan Fisteku",
+      "email": "ensaraliu2017@gmail.com",
+      "telefoni": "+38345123456",
+      "subjekti": "Kam probleme me makinen",
+      "Mesazhi": "wdwdbwidbwhvwf "
+    },
+    {
+      "id": "2cc3",
+      "emriPlote": "Filan Fisteku",
+      "email": "ensaraliu2017@gmail.com",
+      "telefoni": "+38345123461",
+      "subjekti": "Kam probleme me makinen",
+      "Mesazhi": "sveihwihvwfhvw "
+    },
+    {
+      "id": "ab6d",
+      "emriPlote": "Filan Fisteku",
+      "email": "ensaraliu2017@gmail.com",
+      "telefoni": "+38349345678",
+      "subjekti": "Kam probleme me makinen",
+      "Mesazhi": "wfwfwfwfw"
+    },
+    {
+      "id": "1002",
+      "emriPlote": "Filan Fisteku",
+      "email": "ensaraliu2017@gmail.com",
+      "telefoni": "+38349345678",
+      "subjekti": "Kam probleme me makinen",
+      "mesazhi": "test test 2ig2wb2n2ke2\n"
     }
   ]
 }

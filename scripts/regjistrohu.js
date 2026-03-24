@@ -16,24 +16,7 @@ const onClientCreate = (event) => {
   const password = document.getElementById("password").value;
   const konfirmo = document.getElementById("konfirmo").value;
 
-  if (password !== konfirmo) {
-    alert("Fjalekalimi dhe konfirmi duhet te jene te njejta!");
-    return;
-  } else if (password.length < 8) {
-    alert("Fjalekalimi duhet te kete te pakten 8 karaktere!");
-    return;
-  } else if (!email.includes("@")) {
-    alert("Emaili duhet te jete ne formatin e duhur!");
-    return;
-  } else if (email === clients.email) {
-    alert("Ky email eshte i perodorur, ju lutem zgjidhni nje email tjeter!");
-    return;
-  } else if (telefoni === clients.telefoni) {
-    alert(
-      "Ky numer telefoni eshte i perodorur, ju lutem zgjidhni nje numer tjeter!",
-    );
-    return;
-  } else if (
+  if (
     emri === "" ||
     mbiemri === "" ||
     email === "" ||
@@ -42,6 +25,33 @@ const onClientCreate = (event) => {
     konfirmo === ""
   ) {
     alert("Ju lutem plotesoni te gjitha fushat!");
+    return;
+  }
+
+  if (password.length < 8) {
+    alert("Fjalekalimi duhet te kete te pakten 8 karaktere!");
+    return;
+  }
+
+  if (password !== konfirmo) {
+    alert("Fjalekalimi dhe konfirmi duhet te jene te njejta!");
+    return;
+  }
+
+  if (!email.includes("@")) {
+    alert("Emaili duhet te jete ne formatin e duhur!");
+    return;
+  }
+
+  if (email === clients.email) {
+    alert("Ky email eshte i perdorur, ju lutem zgjidhni nje email tjeter!");
+    return;
+  }
+
+  if (telefoni === clients.telefoni) {
+    alert(
+      "Ky numer telefoni eshte i perdorur, ju lutem zgjidhni nje numer tjeter!",
+    );
     return;
   }
 

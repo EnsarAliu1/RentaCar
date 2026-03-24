@@ -105,10 +105,7 @@ const shfaqAutomjetet = (lista) => {
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
-                            <div class="col">
-                                <button class="border rounded-3 py-2 px-5">Detajet</button>
-                            </div>
+                        <div class="row text-center">
                             <div class="col">
                                 <button class="btn bg-primary text-dark fw-bold rounded-3 py-2 px-2"
                                     onclick="rezervimi(${automjeti.id})"><i
